@@ -103,6 +103,7 @@ checkV2() {
         WS="true"
         TLS="true"
         DOMAIN=`grep Host $V2_CONFIG_FILE | cut -d: -f2 | tr -d \",' '`
+        [[ "$1" = "install" ]] && colorEcho $BLUE " 伪装域名：$DOMAIN"
         NGINX_CONFIG_FILE="$NGINX_CONF_PATH${DOMAIN}.conf"
         [[ -f $NGINX_CONFIG_FILE ]] || {
             colorEcho $RED " 未找到域名的nginx配置文件"
@@ -111,6 +112,7 @@ checkV2() {
         V2PORT=`grep port $V2_CONFIG_FILE | cut -d: -f2 | tr -d \",' '`
         WSPATH=`grep path $V2_CONFIG_FILE | cut -d: -f2 | tr -d \",' '`
         NGINX_PORT=`grep -i ssl $NGINX_CONFIG_FILE | grep listen | head -n1 | awk '{print $2}'`
+        [[ "$1" = "install" ]] && colorEcho $BLUE " Nginx端口：$NGINX_PORT"
         CERT_FILE=`grep ssl_certificate $NGINX_CONFIG_FILE | grep -v _key`
         KEY_FILE=`grep ssl_certificate_key $NGINX_CONFIG_FILE`
     }
@@ -121,6 +123,8 @@ checkV2() {
         PORT=`grep port $V2_CONFIG_FILE | cut -d: -f2 | tr -d \",' '`
         DOMAIN=`grep serverName $V2_CONFIG_FILE | cut -d: -f2 | tr -d \",' '`
         [[ "$DOMAIN" = "" ]] && DOMAIN=`grep Host $V2_CONFIG_FILE | cut -d: -f2 | tr -d \",' '`
+        [[ "$1" = "install" ]] && colorEcho $BLUE " 伪装域名：$DOMAIN"
+        [[ "$1" = "install" ]] && colorEcho $BLUE " V2ray/Xray监听端口：$PORT"
         NGINX_CONFIG_FILE="$NGINX_CONF_PATH${DOMAIN}.conf"
     }
 
@@ -186,13 +190,13 @@ installPHP() {
             sed -i '0,/enabled=0/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/remi.repo
             dnf module install -y php:remi-7.4
         fi
-        $CMD_INSTALL php-cli php-fpm php-bcmath php-gd php-mbstring php-mysqlnd php-pdo php-opcache php-xml php-pecl-zip
+        $CMD_INSTALL php-cli php-fpm php-bcmath php-gd php-mbstring php-mysqlnd php-pdo php-opcache php-xml php-pecl-zip php-pecl-imagick
     else
         $CMD_INSTALL lsb-release gnupg2
         wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
         echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php7.list
         $PMT update
-        $CMD_INSTALL php7.4-cli php7.4-fpm php7.4-bcmath php7.4-gd php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-xml php7.4-zip php7.4-json
+        $CMD_INSTALL php7.4-cli php7.4-fpm php7.4-bcmath php7.4-gd php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-xml php7.4-zip php7.4-json php7.4-imagick
         update-alternatives --set php /usr/bin/php7.4
     fi
     systemctl enable $PHP_SERVICE
@@ -384,6 +388,7 @@ EOF
 
     res=`grep -E 'dest.*8080' $V2_CONFIG_FILE`
     [[ "$res" = "" ]] && sed -i 's/"dest": 80/"dest": 8080/' $V2_CONFIG_FILE
+    # VLESS 
     cat > $NGINX_CONFIG_FILE<<-EOF
 server {
     listen 80;
@@ -393,7 +398,8 @@ server {
 }
 
 server {
-    listen       8080 http2;
+    listen 8080;
+    listen 81 http2;
     server_name ${DOMAIN};
     charset utf-8;
 
@@ -430,10 +436,13 @@ install() {
     installMysql
     installWordPress
     colorEcho $BLUE " WordPress安装成功！"
-
+    
     config
     # restart service
     systemctl restart $PHP_SERVICE mariadb nginx $SERVICE
+    sleep 2
+    statusText
+    echo ""
 
     showInfo
 }
