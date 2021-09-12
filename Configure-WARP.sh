@@ -1,3 +1,4 @@
+mkdir /etc/wireguard
 read -p "Enter your network adapter's IP:" ANSIP
 read -p "Enter Public Key:" ANSKEY
 modprobe wireguard
