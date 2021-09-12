@@ -1,4 +1,4 @@
-mkdir /etc/wireguard
+yum install wireguard-tools -y
 read -p "Enter your network adapter's IP: " ANSIP
 read -p "Enter Public Key: " ANSKEY
 modprobe wireguard
