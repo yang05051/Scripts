@@ -1,3 +1,4 @@
+yum install epel-release -y
 yum install wireguard-tools -y
 read -p "Enter your network adapter's IP: " ANSIP
 read -p "Enter Public Key: " ANSKEY
