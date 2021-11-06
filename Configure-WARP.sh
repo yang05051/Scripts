@@ -1,7 +1,7 @@
 yum install epel-release -y
 yum install wireguard-tools -y
 read -p "Enter your network adapter's IP: " ANSIP
-read -p "Enter Public Key: " ANSKEY
+read -p "Enter your public key of WARP: " ANSKEY
 modprobe wireguard
 lsmod | grep wireguard
 cat > /etc/wireguard/wgcf.conf<<-EOF
