@@ -15,7 +15,7 @@ MTU = 1280
 PostUp = ip rule add from $ANSIP lookup main
 PostDown = ip rule delete from $ANSIP lookup main
 [Peer]
-PublicKey = $ANSKEY
+PublicKey = $ANSPUBKEY
 AllowedIPs = 0.0.0.0/0
 AllowedIPs = ::/0
 Endpoint = 162.159.192.1:2408 
