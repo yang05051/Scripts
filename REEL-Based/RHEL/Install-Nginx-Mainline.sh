@@ -1,3 +1,4 @@
+yum install yum-utils -y
 echo '[nginx-mainline]
 name=nginx mainline repo
 baseurl=http://nginx.org/packages/mainline/rhel/8/$basearch/
