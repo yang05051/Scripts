@@ -2,7 +2,10 @@
 
 #### System Initialization
 ```
-Blank
+Blank 1
+```
+```
+Blank 2
 ```
 
 #### Server Configuration
