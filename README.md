@@ -1,9 +1,14 @@
 # Scripts for Shell
 
 ## System Update
-#### CentOS Upgrade Kernel
+#### Upgrade Kernel
+###### CentOS:
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/CentOS/Install-Latest-Kernel.sh)
+```
+###### RHEL:
+```
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/RHEL/Install-Latest-Kernel.sh)
 ```
 #### CentOS Upgrade Kernel + Migrate to Stream Update Channel
 ```
@@ -12,7 +17,6 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 
 ## Server Configuration
 #### Acme Issue Wildcard Certificate (Using Vultr DNS to Verify)
-###### RHEL Based Linux:
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/Acme-Wildcard-Cert_Vultr-DNS.sh)
 ```
