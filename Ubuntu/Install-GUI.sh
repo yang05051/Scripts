@@ -5,3 +5,4 @@ apt install tasksel -y
 tasksel install ubuntu-desktop -y
 systemctl set-default graphical.target
 apt install xrdp -y
+adduser xrdp ssl-cert
