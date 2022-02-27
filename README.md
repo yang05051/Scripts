@@ -26,6 +26,10 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/CentOS/Install-Nginx-Mainline.sh); bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/hijkpw-scripts/main/xray.sh); bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/Configure-WARP.sh)
 ```
+#### Centos Install EPEL
+```
+dnf install epel-release epel-next-release
+```
 
 ## Server Optimization
 #### Enable BBR
