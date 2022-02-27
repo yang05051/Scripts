@@ -34,6 +34,10 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 
 ## System Configuration
+#### Permit Root Login
+```
+echo "PermitRootLogin yes" >> /etc/ssh/sshd_config; passwd root
+```
 #### Ubuntu Install GUI
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Ubuntu/Install-GUI.sh)
