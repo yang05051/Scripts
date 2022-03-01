@@ -27,9 +27,9 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/CentOS/Install-Nginx-Mainline.sh); bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/hijkpw-scripts/main/xray.sh); bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/Configure-WARP.sh)
 ```
 #### Configure Port Forwarding
-###### Port 80 + 443, RHEL Based:
+###### Port 80 + 443, CentOS:
 ```
-https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/Port-Forward-80-443.sh
+https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/CentOS/Port-Forward-80-443.sh
 ```
 #### Centos Install EPEL
 ```
