@@ -1,7 +1,6 @@
 read -p "Enter your destination IP/domain: " ANSDEST
-dnf install -y https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
-rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-dnf makecache
+dnf install epel-release -y
+dnf install epel-next-release -y
 yum install redir -y
 redir :80 $ANSDEST:80
 redir :443 $ANSDEST:443
