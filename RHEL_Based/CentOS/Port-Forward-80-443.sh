@@ -1,6 +1,5 @@
 read -p "Enter your destination IP/domain: " ANSDEST
-dnf install epel-release -y
-dnf install epel-next-release -y
+dnf install epel-release epel-next-release -y
 yum install redir -y
 redir :80 $ANSDEST:80
 redir :443 $ANSDEST:443
