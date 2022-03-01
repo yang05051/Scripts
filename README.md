@@ -29,7 +29,7 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 #### Configure Port Forwarding
 ###### Port 80 + 443, CentOS:
 ```
-https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/CentOS/Port-Forward-80-443.sh
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/CentOS/Port-Forward-80-443.sh)
 ```
 #### Centos Install EPEL
 ```
