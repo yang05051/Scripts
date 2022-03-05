@@ -1,8 +1,15 @@
-yum install epel-release -y
-yum install wireguard-tools -y
 read -p "Enter your IP: " ANSIP
 read -p "Enter your private key of WARP: " ANSPRVKEY
 read -p "Enter your public key of WARP: " ANSPUBKEY
+if [[ ! -z $(which yum) ]]; then
+    yum install epel-release -y
+    yum install wireguard-tools -y
+elif [[ ! -z $(which apt) ]]; then
+    apt install wireguard -y
+else
+    echo "Unsupported system."
+    exit 1;
+fi
 modprobe wireguard
 lsmod | grep wireguard
 cat > /etc/wireguard/wgcf.conf<<-EOF
