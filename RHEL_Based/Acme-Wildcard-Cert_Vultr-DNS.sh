@@ -1,4 +1,11 @@
-yum install socat -y
+if [[ ! -z $(which yum) ]]; then
+    yum install socat -y
+elif [[ ! -z $(which apt) ]]; then
+    apt install socat -y
+else
+    echo "Unsupported system."
+    exit 1;
+fi
 curl https://get.acme.sh | sh -s email=my@example.com
 read -p "Enter your domain: " ANSDOMAIN
 read -p "Enter your Vultr API key: " ANSAPIKEY
