@@ -6,6 +6,7 @@ if [[ ! -z $(which yum) ]]; then
     yum install wireguard-tools -y
 elif [[ ! -z $(which apt) ]]; then
     apt install wireguard -y
+    apt install resolvconf -y
 else
     echo "Unsupported system."
     exit 1;
