@@ -3,8 +3,7 @@ sudo apt-key add nginx_signing.key
 if [[ -r /etc/os-release ]]; then
     echo "deb http://nginx.org/packages/mainline/ubuntu/ $(lsb_release -cs) nginx"  >> /etc/apt/sources.list
     echo "deb-src http://nginx.org/packages/mainline/ubuntu/ $(lsb_release -cs) nginx" >> /etc/apt/sources.list
-    ufw allow http
-    ufw allow https
+    ufw disable
 else
     echo "Not running a distribution with /etc/os-release available"
     exit 1;
