@@ -50,3 +50,7 @@ echo "PermitRootLogin yes" >> /etc/ssh/sshd_config; passwd root
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Ubuntu/Install-GUI.sh)
 ```
+#### Disable IPv6
+```
+echo "@reboot root sysctl -w net.ipv6.conf.all.disable_ipv6=1; sysctl -w net.ipv6.conf.default.disable_ipv6=1; sysctl -w net.ipv6.conf.lo.disable_ipv6=1" >> /etc/crontab
+```
