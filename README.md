@@ -34,7 +34,7 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Port-Forward-80-443.sh)
 ```
-#### Install Cloudflare WARP
+#### Configure Cloudflare WARP
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Configure-WARP.sh)
 ```
