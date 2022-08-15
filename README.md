@@ -60,5 +60,5 @@ echo "@reboot root sysctl -w net.ipv6.conf.all.disable_ipv6=1; sysctl -w net.ipv
 ```
 #### Disable ICMPing Response
 ```
-echo "net.ipv4.icmp_echo_ignore_all=0" >> /etc/sysctl.conf; sysctl -p
+echo "net.ipv4.icmp_echo_ignore_all=1" >> /etc/sysctl.conf; sysctl -p
 ```
