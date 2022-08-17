@@ -35,10 +35,6 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 ```
-#### Ubuntu Install GUI
-```
-bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Ubuntu/Install-GUI.sh)
-```
 #### Disable IPv6
 ```
 echo "@reboot root sysctl -w net.ipv6.conf.all.disable_ipv6=1; sysctl -w net.ipv6.conf.default.disable_ipv6=1; sysctl -w net.ipv6.conf.lo.disable_ipv6=1" >> /etc/crontab
@@ -51,6 +47,10 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ###### Using Sysctl:
 ```
 echo "net.ipv4.icmp_echo_ignore_all=1" >> /etc/sysctl.conf; sysctl -p
+```
+#### Ubuntu Install GUI
+```
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Ubuntu/Install-GUI.sh)
 ```
 
 ## System Update
