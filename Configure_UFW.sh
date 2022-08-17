@@ -4,8 +4,8 @@ if [[ ! -z $(which ufw) ]]; then
     ufw allow ssh
     ufw allow http
     ufw allow https
+    ufw enable
     systemctl enable ufw
-    systemctl start ufw
 else
     echo "UFW is not installed."
     exit 1
