@@ -1,7 +1,7 @@
 if [[ ! -z $(which ufw) ]]; then
     ufw default deny incoming
     ufw default allow outgoing
-    ufw allow ssh
+    ufw allow ssh/tcp
     ufw allow https/tcp
     echo "y" | ufw enable
     systemctl enable ufw
