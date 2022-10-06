@@ -14,7 +14,7 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Configure_UFW.sh); bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Ubuntu/Install-Nginx-Mainline.sh); bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/hijkpw-scripts/main/xray.sh)
 ```
-#### Install Xray
+#### Install Hysteria
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/HyNetwork/hysteria/master/install_server.sh)
 ```
