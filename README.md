@@ -35,7 +35,7 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 
 ## System Configuration
-#### Permit Root Login
+#### Permit Remote Root Login
 ```
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 ```
