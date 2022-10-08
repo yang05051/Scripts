@@ -1,6 +1,15 @@
 read -p "Enter destination IP/domain: " ANSDEST
 read -p "Enter the port that will redirect to destination port 80: " ANSP80
 read -p "Enter the port that will redirect to destination port 443: " ANSP443
+
+if [[ $ANSDEST == "" ]]; then
+    echo "No destination IP/domain entered."
+    exit 1;
+elif [[ $ANSP80 == "" && $ANSP443 == "" ]]; then
+    echo "No port entered."
+    exit 1;
+fi
+
 if [[ ! -z $(which yum) ]]; then
     yum install epel-release epel-next-release -y
     yum install redir -y
