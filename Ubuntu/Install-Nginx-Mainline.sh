@@ -3,9 +3,6 @@ wget -O- https://nginx.org/keys/nginx_signing.key | sudo gpg --dearmor | sudo te
 if [[ -r /etc/os-release ]]; then
     echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" >> /etc/apt/sources.list.d/nginx-ml.list
     echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" >> /etc/apt/preferences.d/99nginx
-    echo "y" | ufw enable
-    ufw allow http
-    ufw allow https
 else
     echo "Not running a distribution with /etc/os-release available"
     exit 1;
