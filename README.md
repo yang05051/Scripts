@@ -18,6 +18,15 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/HyNetwork/hysteria/master/install_server.sh)
 ```
+#### Install Nginx Mainline
+###### CentOS:
+```
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/CentOS/Install-Nginx-Mainline.sh)
+```
+###### Ubuntu:
+```
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Ubuntu/Install-Nginx-Mainline.sh)
+```
 #### Configure Port Forwarding
 ###### Port 80 + 443:
 ```
