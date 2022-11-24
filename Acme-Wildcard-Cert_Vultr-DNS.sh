@@ -7,7 +7,7 @@ else
     exit 1;
 fi
 
-curl https://get.acme.sh | sh -s email=my@example.com
+echo "curl https://get.acme.sh | sh -s email=my@example.com"
 
 read -p "Enter your domain: " ANSDOMAIN
 read -p "Enter your Vultr API key: " ANSAPIKEY
