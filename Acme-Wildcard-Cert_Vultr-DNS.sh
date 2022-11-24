@@ -17,6 +17,7 @@ else
 fi
 
 curl https://get.acme.sh | sh -s email=my@example.com
+/root/.acme.sh/acme.sh --upgrade --auto-upgrade
 
 export VULTR_API_KEY="$ANSAPIKEY"
 
