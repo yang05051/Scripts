@@ -14,7 +14,7 @@ read -p "Enter your Vultr API key: " ANSAPIKEY
 read -p "Enter renew hook: (Leave blank to skip) " ANSRENEWHOOK
 
 if [[ $ANSDOMAIN == "" || $ANSAPIKEY == "" ]]; then
-    echo "Doamin and Vultr API key cannot be empty. "
+    echo "Error: Doamin and Vultr API key cannot be empty. "
     exit 1;
 fi
 
