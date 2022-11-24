@@ -26,4 +26,4 @@ fi
 curl https://get.acme.sh | sh -s email=my@example.com
 
 export VULTR_API_KEY="$ANSAPIKEY"
-/root/.acme.sh/acme.sh --issue --dns dns_vultr -d $ANSDOMAIN -d *.$ANSDOMAIN -k ec-256 --key-file /root/xray.key --fullchain-file /root/xray.pem$INFORENEWHOOK
+echo "/root/.acme.sh/acme.sh --issue --dns dns_vultr -d $ANSDOMAIN -d *.$ANSDOMAIN -k ec-256 --key-file /root/xray.key --fullchain-file /root/xray.pem$INFORENEWHOOK"
