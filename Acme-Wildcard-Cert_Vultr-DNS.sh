@@ -14,10 +14,10 @@ read -p "Enter your Vultr API key: " ANSAPIKEY
 read -p "Enter renew hook: (Leave blank to skip) " ANSRENEWHOOK
 
 if [[ $ANSRENEWHOOK != "" ]]; then
-    SYMBOLQUOTE = '"'
-    INFORENEWHOOK = " --renew-hook $SYMBOLQUOTE$ANSRENEWHOOK$SYMBOLQUOTE"
+    SYMBOLQUOTE='"'
+    INFORENEWHOOK=" --renew-hook $SYMBOLQUOTE$ANSRENEWHOOK$SYMBOLQUOTE"
 else
-    INFORENEWHOOK = ""
+    INFORENEWHOOK=""
 fi
 
 export VULTR_API_KEY="$ANSAPIKEY"
