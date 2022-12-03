@@ -15,6 +15,8 @@ wget https://github.com/MediaBrowser/Emby.Releases/releases/download/$VER/emby-s
 dpkg -i emby-server-deb_$VER_amd64.deb
 rm emby-server-deb_$VER_amd64.deb
 
+systemctl stop emby-server
+
 sed -i 's/User=emby/User=root/g' /lib/systemd/system/emby-server.service
 systemctl daemon-reload
 systemctl enable smby-server
