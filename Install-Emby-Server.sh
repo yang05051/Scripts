@@ -19,5 +19,5 @@ systemctl stop emby-server
 
 sed -i 's/User=emby/User=root/g' /lib/systemd/system/emby-server.service
 systemctl daemon-reload
-systemctl enable smby-server
+systemctl enable emby-server
 systemctl restart emby-server
