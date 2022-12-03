@@ -11,9 +11,9 @@ fi
 
 VER=$(curl -s "https://api.github.com/repos/MediaBrowser/Emby.Releases/releases/latest" | jq -r '.tag_name')
 
-wget https://github.com/MediaBrowser/Emby.Releases/releases/download/$VER/emby-server-deb_$VER_amd64.deb
-dpkg -i emby-server-deb_$VER_amd64.deb
-rm emby-server-deb_$VER_amd64.deb
+wget "https://github.com/MediaBrowser/Emby.Releases/releases/download/$VER/emby-server-deb_$VER_amd64.deb"
+dpkg -i "emby-server-deb_$VER_amd64.deb"
+rm "emby-server-deb_$VER_amd64.deb"
 
 systemctl stop emby-server
 
