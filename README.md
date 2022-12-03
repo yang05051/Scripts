@@ -27,6 +27,10 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Ubuntu/Install-Nginx-Mainline.sh)
 ```
+#### Install Emby Server
+```
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Install-Emby-Server.sh)
+```
 #### Configure Port Forwarding
 ###### Port 80 + 443:
 ```
