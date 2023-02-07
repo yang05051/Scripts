@@ -54,7 +54,11 @@ echo "net.core.rmem_max=4194304" >> /etc/sysctl.conf; sysctl -p
 ## System Configuration
 #### Permit Remote Root Login
 ```
-echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+echo "PermitRootLogin yes" >> /etc/ssh/sshd_config; systemctl restart ssh
+```
+#### Prevent Password Login
+```
+echo "PasswordAuthentication no" >> /etc/ssh/sshd_config; systemctl restart ssh
 ```
 #### Disable IPv6
 ```
