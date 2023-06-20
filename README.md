@@ -40,6 +40,10 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Configure-WARP.sh)
 ```
+#### Download Latest WGCF
+```
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Download-WGCF.sh)
+```
 
 ## Server Optimization
 #### Enable BBR
