@@ -1,1 +1,1 @@
-if $(readlink /etc/resolv.conf) != 
+if $(readlink /etc/resolv.conf) != '/run/resolvconf/resolv.conf`; then
