@@ -1,1 +1,1 @@
-#
+if $(readlink /etc/resolv.conf) != 
