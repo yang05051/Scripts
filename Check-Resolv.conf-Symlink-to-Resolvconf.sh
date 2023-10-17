@@ -7,4 +7,5 @@ if [[ $ANSSYMLINK != '/run/resolvconf/resolv.conf' ]]; then
     else
         ln -s ANSSYMLINK /etc/resolv.conf.bak
     fi
+    rm /etc/resolv.conf; ln -s /run/resolvconf/resolv.conf /etc/resolv.conf`
 fi
