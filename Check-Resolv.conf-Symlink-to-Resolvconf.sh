@@ -1,5 +1,5 @@
 ANSSYMLINK=$(readlink /etc/resolv.conf)
-ANSSYMLINK=${/ANSSYMLINK//.. /}
+ANSSYMLINK=${ANSSYMLINK//../}
 
 if [[ANSSYMLINK != '/run/resolvconf/resolv.conf`]]; then
     if [[ANSSYMLINK == '']]; then
