@@ -1,4 +1,4 @@
-if [[ ! -z $(which ufw) ]]; then
+if [[ $(which ufw) != '' ]]; then
     ufw default deny incoming
     ufw default allow outgoing
     ufw allow ssh/tcp
