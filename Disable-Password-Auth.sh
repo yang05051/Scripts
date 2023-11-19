@@ -12,7 +12,7 @@ if [[ $(ls /etc/ssh/sshd_config.d | grep 'disable-password-auth\.conf') == '' ]]
     echo "PasswordAuthentication no" >> /etc/ssh/sshd_config.d/disable-password-auth.conf
 else
     if [[ $(grep '^#.*PasswordAuthentication no$' /etc/ssh/sshd_config.d/disable-password-auth.conf) != '' ]]; then
-        sed -i 's/^#.*PasswordAuthentication no$/PasswordAuthentication no/g' /etc/ssh/sshd_config
+        sed -i 's/^#.*PasswordAuthentication no$/PasswordAuthentication no/g' /etc/ssh/sshd_config.d/disable-password-auth.conf
     fi
 fi
 
