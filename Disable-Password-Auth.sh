@@ -7,7 +7,7 @@ else
 fi
 
 if [[ $(ls /etc/ssh | grep 'sshd_config.d') == '' ]]; then
-    mkdir /etc/ssh/sshd_config
+    mkdir /etc/ssh/sshd_config.d
 fi
 
 sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config.d/*;
