@@ -13,10 +13,10 @@ if [[ $ANSP80 == "" && $ANSP443 == "" ]]; then
     exit 1;
 fi
 
-if [[ ! -z $(which yum) ]]; then
+if [[ $(which yum) != '' ]]; then
     yum install epel-release epel-next-release -y
     yum install redir -y
-elif [[ ! -z $(which apt) ]]; then
+elif [[ $(which apt) != '' ]]; then
     apt install redir -y
 else
     echo "Unsupported system."
