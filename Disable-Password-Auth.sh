@@ -17,3 +17,4 @@ else
 fi
 
 systemctl restart ssh
+systemctl restart sshd
