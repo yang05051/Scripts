@@ -1,6 +1,6 @@
-if [[ ! -z $(which yum) ]]; then
+if [[ $(which yum) != '' ]]; then
     yum install jq -y
-elif [[ ! -z $(which apt) ]]; then
+elif [[ $(which apt) != '' ]]; then
     apt install jq -y
 else
     echo "Unsupported system."
