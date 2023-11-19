@@ -7,9 +7,9 @@ if [[ $ANSDOMAIN == "" || $ANSAPIKEY == "" ]]; then
     exit 1;
 fi
 
-if [[ ! -z $(which yum) ]]; then
+if [[ $(which yum) != '' ]]; then
     yum install socat -y
-elif [[ ! -z $(which apt) ]]; then
+elif [[ $(which apt) != '' ]]; then
     apt install socat -y
 else
     echo "Unsupported system."
