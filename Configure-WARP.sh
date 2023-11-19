@@ -1,10 +1,10 @@
 read -p "Enter your IP: " ANSIP
 read -p "Enter your private key of WARP: " ANSPRVKEY
 read -p "Enter your public key of WARP: " ANSPUBKEY
-if [[ ! -z $(which yum) ]]; then
+if [[ $(which yum) != '' ]]; then
     yum install epel-release -y
     yum install wireguard-tools -y
-elif [[ ! -z $(which apt) ]]; then
+elif [[ $(which apt) != '' ]]; then
     apt install wireguard -y
     apt install openresolv -y
 else
