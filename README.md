@@ -58,7 +58,7 @@ echo "net.core.rmem_max=4194304" >> /etc/sysctl.conf; sysctl -p
 ## System Configuration
 #### Permit Remote Root Login
 ```
-echo "PermitRootLogin yes" >> /etc/ssh/sshd_config; systemctl restart ssh
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Permit-Root-Login.sh)
 ```
 #### Prevent Password Login
 ```
