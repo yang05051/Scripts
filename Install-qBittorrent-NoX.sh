@@ -4,7 +4,8 @@ elif [[ $(which qbittorrent-nox == '' && $(which yum) != '' ]]
   then yum install qbittorrent-nox -y
 fi
 
-echo '[Unit]
+cat > /etc/systemd/system/qbittorrent.service<<-EOF
+[Unit]
 Description=qBittorrent-nox service
 Documentation=man:qbittorrent-nox(1)
 Wants=network-online.target
@@ -24,6 +25,7 @@ ExecStart=/usr/bin/qbittorrent-nox
 # AmbientCapabilities=CAP_NET_RAW
 
 [Install]
-WantedBy=multi-user.target' >> /etc/systemd/system/qbittorrent-nox.service
+WantedBy=multi-user.target
+EOF
 
 systemctl daemon-reload
