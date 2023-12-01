@@ -1,6 +1,6 @@
-if [[ $(which qbittorrent-nox == '' && $(which apt) != '' ]]
+if [[ $(which qbittorrent-nox) == '' && $(which apt) != '' ]]
   then add-apt-repository ppa:qbittorrent-team/qbittorrent-stable; apt update; apt install qbittorrent-nox -y
-elif [[ $(which qbittorrent-nox == '' && $(which yum) != '' ]]
+elif [[ $(which qbittorrent-nox) == '' && $(which yum) != '' ]]
   then yum install qbittorrent-nox -y
 fi
 
