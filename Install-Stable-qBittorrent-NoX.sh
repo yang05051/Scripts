@@ -18,7 +18,7 @@ After=network-online.target nss-lookup.target
 [Service]
 Type=exec
 User=root
-ExecStart=/usr/bin/qbittorrent-nox --daemon --webui-port=8097
+ExecStart=/usr/bin/qbittorrent-nox --webui-port=8097
 
 [Install]
 WantedBy=multi-user.target' > /etc/systemd/system/qbittorrent.service
