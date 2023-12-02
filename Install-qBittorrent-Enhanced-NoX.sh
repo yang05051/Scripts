@@ -1,5 +1,3 @@
-read -p 'Enter Web UI port: ' ANSPORT
-
 if [[ $(which qbittorrent-nox) == '' ]]; then
   if [[ $(which apt) != '' ]]
     then add-apt-repository ppa:poplite/qbittorrent-enhanced; apt update; apt install qbittorrent-enhanced-nox -y
@@ -18,7 +16,7 @@ After=network-online.target nss-lookup.target
 [Service]
 Type=exec
 User=root
-ExecStart=/usr/bin/qbittorrent-nox --webui-port=$ANSPORT
+ExecStart=/usr/bin/qbittorrent-nox
 
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/qbittorrent.service
