@@ -10,6 +10,7 @@ if [[ $(ls /etc/ssh | grep 'sshd_config.d') == '' ]]; then
     mkdir /etc/ssh/sshd_config.d
 fi
 
+sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config;
 sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config.d/*;
 
 if [[ $(ls /etc/ssh/sshd_config.d | grep 'disable-password-auth\.conf') == '' ]]; then
