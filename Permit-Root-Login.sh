@@ -16,8 +16,8 @@ sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config.d/*;
 if [[ $(ls /etc/ssh/sshd_config.d | grep 'permit-root-login\.conf') == '' ]]; then
     echo "PermitRootLogin yes" >> /etc/ssh/sshd_config.d/permit-root-login.conf
 else
-    if [[ $(grep '^#.*PermitRootLogin yes$' /etc/ssh/sshd_config.d/permit-root-login.conf) != '' ]]; then
-        sed -i 's/^#.*PermitRootLogin yes$/PermitRootLogin yes/g' /etc/ssh/sshd_config.d/permit-root-login.conf
+    if [[ $(grep '^#.*PermitRootLogin yes.*$' /etc/ssh/sshd_config.d/permit-root-login.conf) != '' ]]; then
+        sed -i 's/^#.*PermitRootLogin yes.*$/PermitRootLogin yes/g' /etc/ssh/sshd_config.d/permit-root-login.conf
     fi
 fi
 
