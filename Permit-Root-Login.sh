@@ -1,8 +1,8 @@
 if [[ $(grep 'Include \/etc\/ssh\/sshd_config\.d\/\*\.conf' /etc/ssh/sshd_config) == '' ]]; then
     sed -i '1s/^/Include \/etc\/ssh\/sshd_config\.d\/\*\.conf\n/g' /etc/ssh/sshd_config
 else
-    if [[ $(grep '^#.*Include \/etc\/ssh\/sshd_config\.d\/\*\.conf$' /etc/ssh/sshd_config) != '' ]]; then
-        sed -i 's/^#.*Include \/etc\/ssh\/sshd_config\.d\/\*\.conf$/Include \/etc\/ssh\/sshd_config.d\/\*\.conf/g' /etc/ssh/sshd_config
+    if [[ $(grep '^#.*Include \/etc\/ssh\/sshd_config\.d\/\*\.conf.*$' /etc/ssh/sshd_config) != '' ]]; then
+        sed -i 's/^#.*Include \/etc\/ssh\/sshd_config\.d\/\*\.conf.*$/Include \/etc\/ssh\/sshd_config.d\/\*\.conf/g' /etc/ssh/sshd_config
     fi
 fi
 
