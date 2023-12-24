@@ -18,6 +18,7 @@ fi
 
 curl https://get.acme.sh | sh -s email=my@example.com
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
+/root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
 export VULTR_API_KEY="$ANSAPIKEY"
 
