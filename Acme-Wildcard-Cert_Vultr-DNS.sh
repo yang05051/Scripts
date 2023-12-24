@@ -16,7 +16,7 @@ else
     exit 1;
 fi
 
-curl https://get.acme.sh | sh -s email=my@example.com
+curl https://get.acme.sh | sh -s email=daniel@danielee.dev
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
