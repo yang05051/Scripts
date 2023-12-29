@@ -2,6 +2,10 @@ read_input () {
   echo "$@" | awk -v varnum="$1" '{split($0, READIN, " "); print READIN[varnum+1]}';
 }
 
+telegram_push () {
+  curl -s -o /dev/null -X POST -H "Content-Type: application/json" -d "{\"chat_id\": \"$2\", \"text\": \"$3\", \"disable_notification\": false}" https://api.telegram.org/bot$1/sendMessage
+}
+
 INNUM="1"
 ANSPINGDEST="1.1.1.1"
 ANSPINGCNT="4"
@@ -15,6 +19,11 @@ ANSNORMALMSG="The attck to your server stops. "
 while [[ $(read_input $INNUM $@) != "" ]]
 do
 
+  if [[ $(echo $(read_input $INNUM $@) | cut -b 1) != "-" || $(read_input $((INNUM+1)) $@) == "" ]]; then
+    echo "Incomplete argument. "
+    exit 1;
+  fi
+  
   case $(read_input $INNUM $@) in
 
     "-pingdest")
@@ -57,7 +66,7 @@ done
 
 if [[ $ANSTGBOT == "" || $ANSTGCHAT == "" ]]; then
   echo 'Argument -tgbot or -tgchat not specified. '
-  # exit 1;
+  exit 1;
 fi
 
 ANSPING=$(ping -c 4 $ANSPINGDEST -q)
@@ -65,7 +74,12 @@ ANSPINGMAX=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[3]}')
 ANSPINGLOSS=$(echo $ANSPING | awk '{split($18, LOSSNUM, "%"); print LOSSNUM[1]}')
 
 if [[ $(echo "" | awk -v varpingmax="$ANSPINGMAX" -v varpingmaxthsd="$ANSPINGMAXTHSD" -v varpingloss="$ANSPINGLOSS" -v varpinglossthsd="$ANSPINGLOSSTHSD" '{ if (varpingmax <= varpingmaxthsd && varpingloss <= varpinglossthsd) print "1"; else print "0" }') == 1 ]]; then
-  echo "Not Under Attack"
+  if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status) == 2 ]]; then
+    telegram_push $ANSTGBOT $ANSTGCHAT $ANSNORMALMSG
+  fi
+  echo "1" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status
 else
-  echo "Under attack"
+  if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status) == 1 || $(ls ~/.Under-Attack-Detector-by-Ping.sh | grep "Under-Attack-Detector-by-Ping.sh.status") == "" ]]; then
+    telegram_push $ANSTGBOT $ANSTGCHAT $ANSATTACKMSG
+  fi
 fi
