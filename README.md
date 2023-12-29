@@ -100,5 +100,5 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ## Tools
 #### Under Attck Detector (By Ping)
 ```
-bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Under-Attack-Detector-by-Ping.sh) [-Argument]
+wget -O Under-Attack-Detector-by-Ping.sh https://raw.githubusercontent.com/yang05051/Scripts/main/Under-Attack-Detector-by-Ping.sh; Under-Attack-Detector-by-Ping.sh [-Argument]; rm -f Under-Attack-Detector-by-Ping.sh
 ```
