@@ -82,4 +82,5 @@ else
   if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status) == 1 || $(ls ~/.Under-Attack-Detector-by-Ping.sh | grep "Under-Attack-Detector-by-Ping.sh.status") == "" ]]; then
     telegram_push $ANSTGBOT $ANSTGCHAT $ANSATTACKMSG
   fi
+  echo "2" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status
 fi
