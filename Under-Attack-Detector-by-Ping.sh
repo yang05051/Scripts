@@ -73,6 +73,10 @@ ANSPING=$(ping -c 4 $ANSPINGDEST -q)
 ANSPINGMAX=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[3]}')
 ANSPINGLOSS=$(echo $ANSPING | awk '{split($18, LOSSNUM, "%"); print LOSSNUM[1]}')
 
+if [[ $(ls ~/.Under-Attack-Detector-by-Ping.sh) == "" ]]; then
+  mkdir ~/.Under-Attack-Detector-by-Ping.sh
+fi
+  
 if [[ $(echo "" | awk -v varpingmax="$ANSPINGMAX" -v varpingmaxthsd="$ANSPINGMAXTHSD" -v varpingloss="$ANSPINGLOSS" -v varpinglossthsd="$ANSPINGLOSSTHSD" '{ if (varpingmax <= varpingmaxthsd && varpingloss <= varpinglossthsd) print "1"; else print "0" }') == 1 ]]; then
   if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status) == 2 ]]; then
     telegram_push $ANSTGBOT $ANSTGCHAT $ANSNORMALMSG
