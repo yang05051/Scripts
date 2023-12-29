@@ -96,12 +96,12 @@ fi
   
 if [[ $(echo "" | awk -v varpingmax="$ANSPINGMAX" -v varpingmaxthsd="$ANSPINGMAXTHSD" -v varpingloss="$ANSPINGLOSS" -v varpinglossthsd="$ANSPINGLOSSTHSD" '{ if (varpingmax <= varpingmaxthsd && varpingloss <= varpinglossthsd) print "1"; else print "0" }') == 1 ]]; then
   if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status) == 2 ]]; then
-    telegram_push $ANSNORMALMSG
+    telegram_push 1
   fi
   echo "1" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status
 else
   if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status) == 1 || $(ls ~/.Under-Attack-Detector-by-Ping.sh | grep "Under-Attack-Detector-by-Ping.sh.status") == "" ]]; then
-    telegram_push $ANSATTACKMSG
+    telegram_push 2
   fi
   echo "2" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status
 fi
