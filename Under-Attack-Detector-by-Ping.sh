@@ -67,9 +67,9 @@ do
       done
       
       if [[ $(read_input $INNUM $@) == "-attackmsg" ]]; then
-        $ANSATTACKMSG=$TEMPMSG
+        ANSATTACKMSG=$TEMPMSG
       else
-        $ANSNORMALMSG=$TEMPMSG
+        ANSNORMALMSG=$TEMPMSG
       fi
       
       INNUM=$((INNUM+INNUM2-1))
