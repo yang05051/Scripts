@@ -3,7 +3,13 @@ read_input () {
 }
 
 telegram_push () {
-  curl -s -o /dev/null -X POST -H "Content-Type: application/json" -d "{\"chat_id\": \"$ANSTGCHAT\", \"text\": \"$@\", \"disable_notification\": false}" https://api.telegram.org/bot$ANSTGBOT/sendMessage;
+  if [[ $@ == 2 ]]; then
+    PUSHTEXT=$ANSATTACKMSG;
+  else
+    PUSHTEXT=$ANSNORMALMSG;
+  fi
+  
+  curl -s -o /dev/null -X POST -H "Content-Type: application/json" -d "{\"chat_id\": \"$ANSTGCHAT\", \"text\": \"$PUSHTEXT\", \"disable_notification\": false}" https://api.telegram.org/bot$ANSTGBOT/sendMessage;
 }
 
 INNUM="1"
@@ -50,12 +56,35 @@ do
       ANSTGCHAT=$(read_input $((INNUM+1)) $@)
       ;;
 
-    "-attackmsg")
-      ANSATTACKMSG=$(read_input $((INNUM+1)) $@)
-      ;;
+    "-attackmsg" | "-normalmsg")
+      if [[ $(echo $(read_input $((INNUM+1)) $@) | cut -b 1) != '"' ]]; then
+        echo "Argument of -attackmsg or -normalmsg should start with quotation mark. "
+        exit 1;
+      fi
 
-    "-normalmsg")
-      ANSNORMALMSG=$(read_input $((INNUM+1)) $@)
+      INNUM2=0
+      TEMPMSG=$(read_input $((INNUM+1)) $@)
+
+      while [[ $(echo $(read_input $((INNUM+INNUM2)) $@) | tail -c 2) != '"' ]]
+      do
+        INNUM2=$((INNUM2+1))
+        if [[ $(read_input $((INNUM+INNUM2)) $@) == "" ]]; then
+         echo "Argument of -attackmsg or -normalmsg should end with quotation mark. "
+         exit 1;
+        fi
+        TEMPMSG="$TEMPMSG $(read_input $((INNUM+INNUM2)) $@)"
+      done
+
+      TEMPMSG=${TEMPMSG:1}
+      TEMPMSG=${TEMPMSG::-1}
+      
+      if [[ $(read_input $INNUM $@) == "-attackmsg" ]]; then
+        $ANSATTACKMSG=$TEMPMSG
+      else
+        $ANSNORMALMSG=$TEMPMSG
+      fi
+      
+      INNUM=$((INNUM+INNUM2-1))
       ;;
 
     esac
