@@ -1,5 +1,5 @@
 read_input () {
-  echo "$@" | awk -v varnum="$1" -v varin="$@" '{split(varin, READIN, " "); print READIN[varnum]}'
+  echo "$@" | awk -v varnum="$1" -v varin="$@" '{split(varin, READIN, " "); print READIN[varnum]}';
 }
 
 INNUM="1"
@@ -49,8 +49,8 @@ do
     
 done
 
-if [[ ANSTGBOT == "" || ANSTGCHAT == ""]]; then
-  echo "Argument -tgbot or -tgchat not specified. "
+if [[ $ANSTGBOT == "" || $ANSTGCHAT == "" ]]; then
+  echo 'Argument -tgbot or -tgchat not specified. '
   # exit 1;
 fi
 
