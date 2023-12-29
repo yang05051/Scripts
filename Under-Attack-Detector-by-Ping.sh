@@ -1,5 +1,5 @@
 read_input () {
-  echo "$@" | awk -v varnum="$1" -v varin="$@" '{split(varin, READIN, " "); print READIN[varnum]}';
+  echo "$@" | awk -v varnum="$1" '{split($0, READIN, " "); print READIN[varnum+1]}';
 }
 
 INNUM="1"
@@ -17,35 +17,35 @@ do
   case $(read_input "$INNUM") in
 
     "-pingdest")
-      ANSPINGDEST=$(read_input $((INNUM+1)))
+      ANSPINGDEST=$(read_input $((INNUM+1)) $@)
       ;;
 
     "-pingcnt")
-      ANSPINGCNT=$(read_input $((INNUM+1)))
+      ANSPINGCNT=$(read_input $((INNUM+1)) $@)
       ;;
 
     "-pingmax")
-      ANSPINGMAXTHSD=$(read_input $((INNUM+1)))
+      ANSPINGMAXTHSD=$(read_input $((INNUM+1)) $@)
       ;;
 
     "-pingloss")
-      ANSPINGLOSSTHSD=$(read_input $((INNUM+1)))
+      ANSPINGLOSSTHSD=$(read_input $((INNUM+1)) $@)
       ;;
 
     "-tgbot")
-      ANSTGBOT=$(read_input $((INNUM+1)))
+      ANSTGBOT=$(read_input $((INNUM+1)) $@)
       ;;
 
     "-tgchat")
-      ANSTGCHAT=$(read_input $((INNUM+1)))
+      ANSTGCHAT=$(read_input $((INNUM+1)) $@)
       ;;
 
     "-attackmsg")
-      ANSATTACKMSG=$(read_input $((INNUM+1)))
+      ANSATTACKMSG=$(read_input $((INNUM+1)) $@)
       ;;
 
     "-normalmsg")
-      ANSNORMALMSG=$(read_input $((INNUM+1)))
+      ANSNORMALMSG=$(read_input $((INNUM+1)) $@)
       ;;
 
     esac
