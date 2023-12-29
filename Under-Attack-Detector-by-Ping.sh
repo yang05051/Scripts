@@ -64,8 +64,8 @@ ANSPING=$(ping -c 4 $ANSPINGDEST -q)
 ANSPINGMAX=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[3]}')
 ANSPINGLOSS=$(echo $ANSPING | awk '{split($18, LOSSNUM, "%"); print LOSSNUM[1]}')
 
-if [[ $ANSPINGMAX > $ANSPINGMAXTHSD && $ANSPINGLOSS > $ANSPINGLOSSTHSD ]]; then
-  echo "Under Attack"
+if [[ $ANSPINGMAX <= $ANSPINGMAXTHSD && $ANSPINGLOSS <= $ANSPINGLOSSTHSD ]]; then
+  echo "Not Under Attack"
 else
-  echo "Not under attack"
+  echo "Under attack"
 fi
