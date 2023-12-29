@@ -1,8 +1,8 @@
 read_input () {
-  echo $@ | awk -v varnum="$1" -v varin="$@" '{split(varin, READIN, " "); print READIN[varnum]}'
+  echo "$@" | awk -v varnum="$1" -v varin="$@" '{split(varin, READIN, " "); print READIN[varnum]}'
 }
 
-INNUM=1
+INNUM="1"
 ANSPINGDEST="1.1.1.1"
 ANSPINGMAXTHSD="100"
 ANSPINGLOSSTHSD="0"
@@ -11,9 +11,9 @@ ANSTGCHAT=""
 ANSATTACKMSG="Your server is under attack. "
 ANSNORMALMSG="The attck to your server stops. "
 
-while [$(read_input $INNUM) != ""]
+while [$(read_input "$INNUM") != ""]
 do
-  case $(read_input $INNUM) in
+  case $(read_input "$INNUM") in
 
     "-pingdest")
       ANSPINGDEST=$(read_input $((INNUM+1)))
@@ -45,7 +45,7 @@ do
 
     esac
 
-    INNUM=$((INNUM+1))
+    INNUM=$((INNUM+2))
     
 done
 
