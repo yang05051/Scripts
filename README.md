@@ -96,3 +96,9 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/CentOS/OS-to-Stream.sh); bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/RHEL_Based/CentOS/Install-Latest-Kernel.sh)
 ```
+
+## Tools
+#### Under Attck Detector (By Ping)
+```
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Under-Attack-Detector-by-Ping.sh) [-Argument]
+```
