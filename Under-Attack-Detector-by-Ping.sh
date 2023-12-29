@@ -12,9 +12,10 @@ ANSTGCHAT=""
 ANSATTACKMSG="Your server is under attack. "
 ANSNORMALMSG="The attck to your server stops. "
 
-while [$(read_input "$INNUM") != ""]
+while [[ $(read_input $INNUM $@) != "" ]]
 do
-  case $(read_input "$INNUM") in
+
+  case $(read_input $INNUM $@) in
 
     "-pingdest")
       ANSPINGDEST=$(read_input $((INNUM+1)) $@)
