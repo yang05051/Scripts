@@ -60,7 +60,7 @@ do
       INNUM2=2
       TEMPMSG=$(read_input $((INNUM+1)) $@)
 
-      while [[ $(echo $(read_input $((INNUM+INNUM2)) ${*@Q}) | head -c 2) != "'-" ]]
+      while [[ $(echo $(read_input $((INNUM+INNUM2)) ${*@Q}) | head -c 2) != "'-" && $(echo $(read_input $((INNUM+INNUM2)) $@) != "" ]]
       do
         TEMPMSG="$TEMPMSG $(read_input $((INNUM+INNUM2)) $@)"
         INNUM2=$((INNUM2+1))
