@@ -57,26 +57,14 @@ do
       ;;
 
     "-attackmsg" | "-normalmsg")
-      if [[ $(echo $(read_input $((INNUM+1)) $@) | cut -b 1) != '"' ]]; then
-        echo "Argument of -attackmsg or -normalmsg should start with quotation mark. "
-        exit 1;
-      fi
-
       INNUM2=0
       TEMPMSG=$(read_input $((INNUM+1)) $@)
 
-      while [[ $(echo $(read_input $((INNUM+INNUM2)) $@) | tail -c 2) != '"' ]]
+      while [[ $(echo $(read_input $((INNUM+INNUM2)) ${*@Q}) | tail -c 2) != "'" ]]
       do
         INNUM2=$((INNUM2+1))
-        if [[ $(read_input $((INNUM+INNUM2)) $@) == "" ]]; then
-         echo "Argument of -attackmsg or -normalmsg should end with quotation mark. "
-         exit 1;
-        fi
         TEMPMSG="$TEMPMSG $(read_input $((INNUM+INNUM2)) $@)"
       done
-
-      TEMPMSG=${TEMPMSG:1}
-      TEMPMSG=${TEMPMSG::-1}
       
       if [[ $(read_input $INNUM $@) == "-attackmsg" ]]; then
         $ANSATTACKMSG=$TEMPMSG
