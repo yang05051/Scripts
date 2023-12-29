@@ -4,6 +4,7 @@ read_input () {
 
 INNUM="1"
 ANSPINGDEST="1.1.1.1"
+ANSPINGCNT="4"
 ANSPINGMAXTHSD="100"
 ANSPINGLOSSTHSD="0"
 ANSTGBOT=""
@@ -17,6 +18,10 @@ do
 
     "-pingdest")
       ANSPINGDEST=$(read_input $((INNUM+1)))
+      ;;
+
+    "-pingcnt")
+      ANSPINGCNT=$(read_input $((INNUM+1)))
       ;;
 
     "-pingmax")
