@@ -9,7 +9,7 @@ telegram_push () {
     PUSHTEXT=$ANSNORMALMSG;
   fi
   
-  curl -s -o /dev/null -X POST -H "Content-Type: application/json" -d "{\"chat_id\": \"$ANSTGCHAT\", \"text\": \"$PUSHTEXT\", \"disable_notification\": false, \"parse_mode\": \"MarkdownV2\"}" https://api.telegram.org/bot$ANSTGBOT/sendMessage;
+  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text="$PUSHTEXT" -d parse_mode=MarkdownV2
 }
 
 INNUM="1"
