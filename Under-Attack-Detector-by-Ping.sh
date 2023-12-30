@@ -81,6 +81,9 @@ do
     
 done
 
+ANSATTACKMSG=$(echo $ANSATTACKMSG | sed 's/[][ \~`!@#$%^&*()=+{}|;:'"'"'",<>/?-]/\\\\&/g')
+ANSNORMALMSG=$(echo $ANSNORMALMSG | sed 's/[][ \~`!@#$%^&*()=+{}|;:'"'"'",<>/?-]/\\\\&/g')
+
 if [[ $ANSTGBOT == "" || $ANSTGCHAT == "" ]]; then
   echo 'Argument -tgbot or -tgchat not specified. '
   exit 1;
