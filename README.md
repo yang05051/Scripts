@@ -99,6 +99,7 @@ bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/y
 
 ## Tools
 #### Under Attck Detector (By Ping)
+Details: <https://www.nodeseek.com/post-52533-1>
 ```
 wget -O Under-Attack-Detector-by-Ping.sh https://raw.githubusercontent.com/yang05051/Scripts/main/Under-Attack-Detector-by-Ping.sh; chmod +x ./Under-Attack-Detector-by-Ping.sh; ./Under-Attack-Detector-by-Ping.sh [-Argument]
 ```
