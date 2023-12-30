@@ -71,11 +71,17 @@ do
       case $(echo $(read_input $INNUM $@) | head -c 10) in
       "-attackmsg")
         ANSATTACKMSG=$TEMPMSG
-        if [[ $(echo $(read_input $INNUM $@) | tail -c 4) == "-md" ]]; then ANSATTACKMSGPAM="-d parse_mode=MarkdownV2"; fi
+        case $(echo $(read_input $INNUM $@) | awk '{ split($0, ARG, "-"); print ARG[3]; }') in
+          "md") ANSATTACKMSGPAM="-d parse_mode=MarkdownV2" ;;
+          "html") ANSATTACKMSGPAM="-d parse_mode=HTML" ;;
+        esac
         ;;
       "-normalmsg")
         ANSNORMALMSG=$TEMPMSG
-        if [[ $(echo $(read_input $INNUM $@) | tail -c 4) == "-md" ]]; then ANSNORMALMSGPAM="-d parse_mode=MarkdownV2"; fi
+        case $(echo $(read_input $INNUM $@) | awk '{ split($0, ARG, "-"); print ARG[3]; }') in
+          "md") ANSNORMALMSGPAM="-d parse_mode=MarkdownV2" ;;
+          "html") ANSNORMALMSGPAM="-d parse_mode=HTML" ;;
+        esac
         ;;
       esac
       
