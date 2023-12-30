@@ -9,7 +9,7 @@ telegram_push () {
     PUSHTEXT=$ANSNORMALMSG; TEXTPAM=$ANSNORMALMSGPAM
   fi
   
-  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text=$PUSHTEXT $TEXTPAM
+  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text="$PUSHTEXT" $TEXTPAM
 }
 
 INNUM="1"
