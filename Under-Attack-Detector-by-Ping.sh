@@ -9,7 +9,7 @@ telegram_push () {
     PUSHTEXT=$ANSNORMALMSG;
   fi
   
-  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text="$PUSHTEXT" -d parse_mode=MarkdownV2
+  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text=$PUSHTEXT
 }
 
 INNUM="1"
@@ -19,8 +19,8 @@ ANSPINGMAXTHSD="100"
 ANSPINGLOSSTHSD="0"
 ANSTGBOT=""
 ANSTGCHAT=""
-ANSATTACKMSG="Your server is under attack. "
-ANSNORMALMSG="The attck to your server stops. "
+ANSATTACKMSG=$(echo "Your server is under attack. " | sed 's/^.*$/\"&\"/g')
+ANSNORMALMSG=$(echo "The attck to your server stops. " | sed 's/^.*$/\"&\"/g')
 
 while [[ $(read_input $INNUM $@) != "" ]]
 do
@@ -56,7 +56,7 @@ do
       ANSTGCHAT=$(read_input $((INNUM+1)) $@)
       ;;
 
-    "-attackmsg" | "-normalmsg")
+    "-attackmsg" | "-normalmsg" | "-attackmsg-md" | "-normalmsg-md")
       INNUM2=2
       TEMPMSG=$(read_input $((INNUM+1)) $@)
 
@@ -67,9 +67,13 @@ do
       done
       
       if [[ $(read_input $INNUM $@) == "-attackmsg" ]]; then
-        ANSATTACKMSG=$TEMPMSG
-      else
-        ANSNORMALMSG=$TEMPMSG
+        ANSATTACKMSG=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')
+      elif [[ $(read_input $INNUM $@) == "-normalmsg" ]]; then
+        ANSNORMALMSG=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')
+      elif [[ $(read_input $INNUM $@) == "-attackmsg-md" ]]; then
+        ANSATTACKMSG="$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
+      elif [[ $(read_input $INNUM $@) == "-normalmsg-md" ]]; then
+        ANSNORMALMSG="$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
       fi
       
       INNUM=$((INNUM+INNUM2-2))
