@@ -9,7 +9,7 @@ telegram_push () {
     PUSHTEXT=$ANSNORMALMSG;
   fi
   
-  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text=$PUSHTEXT
+  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT $PUSHTEXT
 }
 
 INNUM="1"
@@ -19,8 +19,8 @@ ANSPINGMAXTHSD="100"
 ANSPINGLOSSTHSD="0"
 ANSTGBOT=""
 ANSTGCHAT=""
-ANSATTACKMSG=$(echo "Your server is under attack. " | sed 's/^.*$/\"&\"/g')
-ANSNORMALMSG=$(echo "The attck to your server stops. " | sed 's/^.*$/\"&\"/g')
+ANSATTACKMSG="-d text=$(echo "Your server is under attack. " | sed 's/^.*$/\"&\"/g')"
+ANSNORMALMSG="-d text=$(echo "The attck to your server stops. " | sed 's/^.*$/\"&\"/g')"
 
 while [[ $(read_input $INNUM $@) != "" ]]
 do
@@ -68,16 +68,16 @@ do
 
       case $(read_input $INNUM $@) in
       "-attackmsg")
-        ANSATTACKMSG=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')
+        ANSATTACKMSG="-d text=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')"
         ;;
       "-normalmsg")
-        ANSNORMALMSG=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')
+        ANSNORMALMSG="-d text=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')"
         ;;
       "-attackmsg-md")
-        ANSATTACKMSG="$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
+        ANSATTACKMSG="-d text=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
         ;;
       "-normalmsg-md")
-        ANSNORMALMSG="$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
+        ANSNORMALMSG="-d text=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
         ;;
       esac
       
