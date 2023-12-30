@@ -75,7 +75,7 @@ do
         ;;
       "-normalmsg")
         ANSNORMALMSG=$TEMPMSG
-        if [[ $(echo $(read_input $INNUM $@) | tail -c 4) == "-md" ]]; then ANSATTACKMSGPAM="-d parse_mode=MarkdownV2"; fi
+        if [[ $(echo $(read_input $INNUM $@) | tail -c 4) == "-md" ]]; then ANSNORMALMSGPAM="-d parse_mode=MarkdownV2"; fi
         ;;
       esac
       
