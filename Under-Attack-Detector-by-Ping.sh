@@ -65,16 +65,21 @@ do
         TEMPMSG="$TEMPMSG $(read_input $((INNUM+INNUM2)) $@)"
         INNUM2=$((INNUM2+1))
       done
-      
-      if [[ $(read_input $INNUM $@) == "-attackmsg" ]]; then
+
+      case $(read_input $INNUM $@) in
+      "-attackmsg")
         ANSATTACKMSG=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')
-      elif [[ $(read_input $INNUM $@) == "-normalmsg" ]]; then
+        ;;
+      "-normalmsg")
         ANSNORMALMSG=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')
-      elif [[ $(read_input $INNUM $@) == "-attackmsg-md" ]]; then
+        ;;
+      "-attackmsg-md")
         ANSATTACKMSG="$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
-      elif [[ $(read_input $INNUM $@) == "-normalmsg-md" ]]; then
+        ;;
+      "-normalmsg-md")
         ANSNORMALMSG="$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
-      fi
+        ;;
+      esac
       
       INNUM=$((INNUM+INNUM2-2))
       ;;
