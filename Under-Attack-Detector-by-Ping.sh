@@ -58,7 +58,7 @@ do
       ANSTGCHAT=$(read_input $((INNUM+1)) $@)
       ;;
 
-    "-attackmsg" | "-normalmsg" | "-attackmsg-md" | "-normalmsg-md")
+    "-attackmsg" | "-normalmsg" | "-attackmsg-md" | "-normalmsg-md" | "-attackmsg-html" | "-normalmsg-html")
       INNUM2=2
       TEMPMSG=$(read_input $((INNUM+1)) $@)
 
