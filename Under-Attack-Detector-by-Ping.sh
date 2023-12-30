@@ -9,7 +9,7 @@ telegram_push () {
     PUSHTEXT=$ANSNORMALMSG;
   fi
   
-  curl -s -o /dev/null -X POST -H "Content-Type: application/json" -d "{\"chat_id\": \"$ANSTGCHAT\", \"text\": \"$PUSHTEXT\", \"disable_notification\": false}" https://api.telegram.org/bot$ANSTGBOT/sendMessage;
+  curl -s -o /dev/null -X POST -H "Content-Type: application/json" -d "{\"chat_id\": \"$ANSTGCHAT\", \"text\": \"$PUSHTEXT\", \"disable_notification\": false, \"parse_mode\": \"MarkdownV2\"}" https://api.telegram.org/bot$ANSTGBOT/sendMessage;
 }
 
 INNUM="1"
@@ -81,8 +81,8 @@ do
     
 done
 
-ANSATTACKMSG=$(echo $ANSATTACKMSG | sed 's/[][ \~`!@#$%^&*()=+{}|;:'"'"'",<>/?-]/\\\\&/g')
-ANSNORMALMSG=$(echo $ANSNORMALMSG | sed 's/[][ \~`!@#$%^&*()=+{}|;:'"'"'",<>/?-]/\\\\&/g')
+ANSATTACKMSG=$(echo $ANSATTACKMSG | sed 's/[][\~`!@#$%^&*()=+{}|;:'"'"'",<>/?-]/\\&/g')
+ANSNORMALMSG=$(echo $ANSNORMALMSG | sed 's/[][\~`!@#$%^&*()=+{}|;:'"'"'",<>/?-]/\\&/g')
 
 if [[ $ANSTGBOT == "" || $ANSTGCHAT == "" ]]; then
   echo 'Argument -tgbot or -tgchat not specified. '
