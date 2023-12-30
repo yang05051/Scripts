@@ -99,7 +99,7 @@ if [[ $ANSTGBOT == "" || $ANSTGCHAT == "" ]]; then
   exit 1;
 fi
 
-ANSPING=$(ping -c $PINGCNT $ANSPINGDEST -q)
+ANSPING=$(ping $ANSPINGDEST -c $PINGCNT -q)
 ANSPINGMAX=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[3]}')
 ANSPINGLOSS=$(echo $ANSPING | awk '{split($18, LOSSNUM, "%"); print LOSSNUM[1]}')
 
