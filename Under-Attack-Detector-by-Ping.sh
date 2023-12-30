@@ -4,12 +4,12 @@ read_input () {
 
 telegram_push () {
   if [[ $@ == 2 ]]; then
-    PUSHTEXT=$ANSATTACKMSG;
+    PUSHTEXT=$ANSATTACKMSG; TEXTPAM=$ANSATTACKMSGPAM
   else
-    PUSHTEXT=$ANSNORMALMSG;
+    PUSHTEXT=$ANSNORMALMSG; TEXTPAM=$ANSNORMALMSGPAM
   fi
   
-  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT $PUSHTEXT
+  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text=$PUSHTEXT $TEXTPAM
 }
 
 INNUM="1"
@@ -19,8 +19,10 @@ ANSPINGMAXTHSD="100"
 ANSPINGLOSSTHSD="0"
 ANSTGBOT=""
 ANSTGCHAT=""
-ANSATTACKMSG="-d text=$(echo "Your server is under attack. " | sed 's/^.*$/\"&\"/g')"
-ANSNORMALMSG="-d text=$(echo "The attck to your server stops. " | sed 's/^.*$/\"&\"/g')"
+ANSATTACKMSG="Your server is under attack."
+ANSNORMALMSG="The attck to your server stops."
+ANSATTACKMSGPAM=""
+ANSNORMALMSGPAM=""
 
 while [[ $(read_input $INNUM $@) != "" ]]
 do
@@ -66,18 +68,14 @@ do
         INNUM2=$((INNUM2+1))
       done
 
-      case $(read_input $INNUM $@) in
+      case $(echo $(read_input $INNUM $@) | head -c 10) in
       "-attackmsg")
-        ANSATTACKMSG="-d text=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')"
+        ANSATTACKMSG=$TEMPMSG
+        if [[ $(echo $(read_input $INNUM $@) | tail -c 4) == "-md" ]]; then ANSATTACKMSGPAM="-d parse_mode=MarkdownV2"; fi
         ;;
       "-normalmsg")
-        ANSNORMALMSG="-d text=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g')"
-        ;;
-      "-attackmsg-md")
-        ANSATTACKMSG="-d text=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
-        ;;
-      "-normalmsg-md")
-        ANSNORMALMSG="-d text=$(echo $TEMPMSG | sed 's/^.*$/\"&\"/g') -d parse_mode=MarkdownV2"
+        ANSNORMALMSG=$TEMPMSG
+        if [[ $(echo $(read_input $INNUM $@) | tail -c 4) == "-md" ]]; then ANSATTACKMSGPAM="-d parse_mode=MarkdownV2"; fi
         ;;
       esac
       
