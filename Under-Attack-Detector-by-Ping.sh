@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 read_input () {
   echo "$@" | awk -v varnum="$1" '{split($0, READIN, " "); print READIN[varnum+1]}';
