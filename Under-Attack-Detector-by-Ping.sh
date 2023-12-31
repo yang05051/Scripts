@@ -108,18 +108,18 @@ ANSPING=$(ping $ANSPINGDEST -c $ANSPINGCNT -q)
 ANSPINGMAX=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[3]}')
 ANSPINGLOSS=$(echo $ANSPING | awk '{split($18, LOSSNUM, "%"); print LOSSNUM[1]}')
 
-if [[ $(ls ~/.Under-Attack-Detector-by-Ping.sh) == "" ]]; then
-  mkdir ~/.Under-Attack-Detector-by-Ping.sh
+if [[ $(ls /root/.Under-Attack-Detector-by-Ping.sh) == "" ]]; then
+  mkdir /root/.Under-Attack-Detector-by-Ping.sh
 fi
   
 if [[ $(echo "" | awk -v varpingmax="$ANSPINGMAX" -v varpingmaxthsd="$ANSPINGMAXTHSD" -v varpingloss="$ANSPINGLOSS" -v varpinglossthsd="$ANSPINGLOSSTHSD" '{ if (varpingmax <= varpingmaxthsd && varpingloss <= varpinglossthsd) print "1"; else print "0" }') == 1 ]]; then
-  if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status) == 2 ]]; then
+  if [[ $(cat /root/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status) == 2 ]]; then
     telegram_push 1
   fi
-  echo "1" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status
+  echo "1" > /root/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status
 else
-  if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status) == 1 || $(ls ~/.Under-Attack-Detector-by-Ping.sh | grep "Under-Attack-Detector-by-Ping.sh${ANSID}.status") == "" ]]; then
+  if [[ $(cat /root/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status) == 1 || $(ls /root/.Under-Attack-Detector-by-Ping.sh | grep "Under-Attack-Detector-by-Ping.sh${ANSID}.status") == "" ]]; then
     telegram_push 2
   fi
-  echo "2" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status
+  echo "2" > /root/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status
 fi
