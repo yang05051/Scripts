@@ -23,6 +23,7 @@ ANSATTACKMSG="Your server is under attack."
 ANSNORMALMSG="The attck to your server stops."
 ANSATTACKMSGPAM=""
 ANSNORMALMSGPAM=""
+ANSID=""
 
 while [[ $(read_input $INNUM $@) != "" ]]
 do
@@ -56,6 +57,10 @@ do
 
     "-tgchat")
       ANSTGCHAT=$(read_input $((INNUM+1)) $@)
+      ;;
+
+    "-id")
+      ANSID=".$(read_input $((INNUM+1)) $@)"
       ;;
 
     "-attackmsg" | "-normalmsg" | "-attackmsg-md" | "-normalmsg-md" | "-attackmsg-html" | "-normalmsg-html")
@@ -108,13 +113,13 @@ if [[ $(ls ~/.Under-Attack-Detector-by-Ping.sh) == "" ]]; then
 fi
   
 if [[ $(echo "" | awk -v varpingmax="$ANSPINGMAX" -v varpingmaxthsd="$ANSPINGMAXTHSD" -v varpingloss="$ANSPINGLOSS" -v varpinglossthsd="$ANSPINGLOSSTHSD" '{ if (varpingmax <= varpingmaxthsd && varpingloss <= varpinglossthsd) print "1"; else print "0" }') == 1 ]]; then
-  if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status) == 2 ]]; then
+  if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status) == 2 ]]; then
     telegram_push 1
   fi
-  echo "1" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status
+  echo "1" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status
 else
-  if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status) == 1 || $(ls ~/.Under-Attack-Detector-by-Ping.sh | grep "Under-Attack-Detector-by-Ping.sh.status") == "" ]]; then
+  if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status) == 1 || $(ls ~/.Under-Attack-Detector-by-Ping.sh | grep "Under-Attack-Detector-by-Ping.sh${ANSID}.status") == "" ]]; then
     telegram_push 2
   fi
-  echo "2" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh.status
+  echo "2" > ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status
 fi
