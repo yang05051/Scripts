@@ -19,6 +19,7 @@ ANSPINGDEST="1.1.1.1"
 ANSPINGCNT="4"
 ANSPINGMAXTHSD="100"
 ANSPINGLOSSTHSD="0"
+ANSPINGJITTHSD="10"
 ANSTGBOT=""
 ANSTGCHAT=""
 ANSATTACKMSG="Your server is under attack."
@@ -51,6 +52,10 @@ do
 
     "-pingloss")
       ANSPINGLOSSTHSD=$(read_input $((INNUM+1)) $@)
+      ;;
+
+    "-pingjit")
+      ANSPINGJITTHSD=$(read_input $((INNUM+1)) $@)
       ;;
 
     "-tgbot")
@@ -108,13 +113,14 @@ fi
 
 ANSPING=$(ping $ANSPINGDEST -c $ANSPINGCNT -q)
 ANSPINGMAX=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[3]}')
+ANSPINGJIT=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[4]}')
 ANSPINGLOSS=$(echo $ANSPING | awk '{split($18, LOSSNUM, "%"); print LOSSNUM[1]}')
 
 if [[ $(ls ~/.Under-Attack-Detector-by-Ping.sh) == "" ]]; then
   mkdir ~/.Under-Attack-Detector-by-Ping.sh
 fi
   
-if [[ $(echo "" | awk -v varpingmax="$ANSPINGMAX" -v varpingmaxthsd="$ANSPINGMAXTHSD" -v varpingloss="$ANSPINGLOSS" -v varpinglossthsd="$ANSPINGLOSSTHSD" '{ if (varpingmax <= varpingmaxthsd && varpingloss <= varpinglossthsd) print "1"; else print "0" }') == 1 ]]; then
+if [[ $(echo "" | awk -v varpingmax="$ANSPINGMAX" -v varpingmaxthsd="$ANSPINGMAXTHSD" -v varpingloss="$ANSPINGLOSS" -v varpinglossthsd="$ANSPINGLOSSTHSD" -v varpingjit="$ANSPINGJIT" -v varpingjitthsd="$ANSPINGJITTHSD" '{ if (varpingmax <= varpingmaxthsd && varpingloss <= varpinglossthsd && varpingjit <= varpingjitthsd) print "1"; else print "0" }') == 1 ]]; then
   if [[ $(cat ~/.Under-Attack-Detector-by-Ping.sh/Under-Attack-Detector-by-Ping.sh${ANSID}.status) == 2 ]]; then
     telegram_push 1
   fi
