@@ -14,6 +14,19 @@ telegram_push () {
   curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text="$PUSHTEXT" $TEXTPAM
 }
 
+replace_var () {
+  TEMPTEXT="$0"
+  
+  TEMPTEXT=$(echo $TEMPTEXT | sed 's/\\n/%0A/g')
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGMAX/$ANSPINGMAX/g")
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGLOSS/$ANSPINGLOSS/g")
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGJIT/$ANSPINGJIT/g")
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGMIN/$ANSPINGMIN/g")
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGAVG/$ANSPINGAVG/g")
+
+  echo $TEMPTEXT
+}
+
 INNUM="1"
 ANSPINGDEST="1.1.1.1"
 ANSPINGCNT="4"
@@ -112,9 +125,14 @@ if [[ $ANSTGBOT == "" || $ANSTGCHAT == "" ]]; then
 fi
 
 ANSPING=$(ping $ANSPINGDEST -c $ANSPINGCNT -q)
+ANSPINGMIN=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[1]}')
+ANSPINGAVG=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[2]}')
 ANSPINGMAX=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[3]}')
 ANSPINGJIT=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[4]}')
 ANSPINGLOSS=$(echo $ANSPING | awk '{split($18, LOSSNUM, "%"); print LOSSNUM[1]}')
+
+ANSATTACKMSG=$(replace_var $ANSATTACKMSG)
+ANSNORMALMSG=$(replace_var $ANSNORMALMSG)
 
 if [[ $(ls ~/.Under-Attack-Detector-by-Ping.sh) == "" ]]; then
   mkdir ~/.Under-Attack-Detector-by-Ping.sh
