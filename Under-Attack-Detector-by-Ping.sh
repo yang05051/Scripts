@@ -5,7 +5,7 @@ read_input () {
 }
 
 telegram_push () {
-  if [[ $@ == 2 ]]; then
+  if [[ $@ == "2" ]]; then
     PUSHTEXT=$ANSATTACKMSG; TEXTPAM=$ANSATTACKMSGPAM
   else
     PUSHTEXT=$ANSNORMALMSG; TEXTPAM=$ANSNORMALMSGPAM
@@ -15,14 +15,34 @@ telegram_push () {
 }
 
 replace_var () {
-  TEMPTEXT="$@"
+  if [[ $@ == "2" ]]; then
+    TEMPTEXT=$ANSATTACKMSG
+    TEMPTEXTPAM=$ANSATTACKMSGPAM
+  else
+    TEMPTEXT=$ANSNORMALMSG
+    TEMPTEXTPAM=$ANSNORMALMSGPAM
+  fi
+
+  if [[ TEMPTEXTPAM == "-d parse_mode=MarkdownV2" ]]; then 
+    TEMPPINGMAX=$(echo $ANSPINGMAX | sed 's/\./\\\./g')
+    TEMPPINGAVG=$(echo $ANSPINGAVG | sed 's/\./\\\./g')
+    TEMPPINGMIN=$(echo $ANSPINGMIN | sed 's/\./\\\./g')
+    TEMPPINGJIT=$(echo $ANSPINGJIT | sed 's/\./\\\./g')
+    TEMPPINGLOSS=$(echo $ANSPINGLOSS | sed 's/\./\\\./g')
+  else
+    TEMPPINGMAX=$ANSPINGMAX
+    TEMPPINGAVG=$ANSPINGAVG
+    TEMPPINGMIN=$ANSPINGMIN
+    TEMPPINGJIT=$ANSPINGJIT
+    TEMPPINGLOSS=$ANSPINGLOSS
+  fi
   
   TEMPTEXT=$(echo $TEMPTEXT | sed 's/\\n/%0A/g')
-  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGMAX/$ANSPINGMAX/g")
-  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGLOSS/$ANSPINGLOSS/g")
-  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGJIT/$ANSPINGJIT/g")
-  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGMIN/$ANSPINGMIN/g")
-  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGAVG/$ANSPINGAVG/g")
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGMAX/$TEMPPINGMAX/g")
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGLOSS/$TEMPPINGLOSS/g")
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGJIT/$TEMPPINGJIT/g")
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGMIN/$TEMPPINGMIN/g")
+  TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGAVG/$TEMPPINGAVG/g")
 
   echo $TEMPTEXT
 }
@@ -131,8 +151,8 @@ ANSPINGMAX=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[3]}')
 ANSPINGJIT=$(echo $ANSPING | awk '{split($26, PINGNUM, "/"); print PINGNUM[4]}')
 ANSPINGLOSS=$(echo $ANSPING | awk '{split($18, LOSSNUM, "%"); print LOSSNUM[1]}')
 
-ANSATTACKMSG=$(replace_var $ANSATTACKMSG)
-ANSNORMALMSG=$(replace_var $ANSNORMALMSG)
+ANSATTACKMSG=$(replace_var 2)
+ANSNORMALMSG=$(replace_var 1)
 
 if [[ $(ls ~/.Under-Attack-Detector-by-Ping.sh) == "" ]]; then
   mkdir ~/.Under-Attack-Detector-by-Ping.sh
