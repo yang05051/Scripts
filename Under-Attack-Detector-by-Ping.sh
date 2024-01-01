@@ -15,7 +15,7 @@ telegram_push () {
 }
 
 replace_var () {
-  TEMPTEXT="$0"
+  TEMPTEXT="$@"
   
   TEMPTEXT=$(echo $TEMPTEXT | sed 's/\\n/%0A/g')
   TEMPTEXT=$(echo $TEMPTEXT | sed "s/\\\VARPINGMAX/$ANSPINGMAX/g")
