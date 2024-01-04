@@ -90,37 +90,37 @@ do
 
     "-pingdest")
       ANSPINGDEST=$(read_input $((INNUM+1)) $@)
-      check_ip ANSPINGDEST
+      check_ip $ANSPINGDEST
       ;;
 
     "-pingcnt")
       ANSPINGCNT=$(read_input $((INNUM+1)) $@)
-      check_number_only ANSPINGCNT
+      check_number_only $ANSPINGCNT
       ;;
 
     "-pingmax")
       ANSPINGMAXTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only ANSPINGMAXTHSD
+      check_number_only $ANSPINGMAXTHSD
       ;;
 
     "-pingloss")
       ANSPINGLOSSTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only ANSPINGLOSSTHSD
+      check_number_only $ANSPINGLOSSTHSD
       ;;
 
     "-pingjit")
       ANSPINGJITTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only ANSPINGJITTHSD
+      check_number_only $ANSPINGJITTHSD
       ;;
 
     "-pingavg")
       ANSPINGAVGTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only ANSPINGAVGTHSD
+      check_number_only $ANSPINGAVGTHSD
       ;;
 
     "-pingmin")
       ANSPINGMINTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only ANSPINGMINTHSD
+      check_number_only $ANSPINGMINTHSD
       ;;
 
     "-tgbot")
