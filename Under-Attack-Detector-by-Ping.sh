@@ -15,14 +15,14 @@ telegram_push () {
 }
 
 check_number_only () {
-  if [[ $(echo $@ | grep '[^0-9.]') != "" ]]; then
+  if [[ $(echo $@ | grep '[^0-9.]') != "" || $@ == "" ]]; then
     echo "Some arguments should only contain numbers. "
     exit 1;
   fi
 }
 
 check_ip () {
-  if [[ $(echo $@ | grep '[^0-9|\..]') != "" || $(echo $@ | awk '{ split($0, SECT, "."); for (i = 1; i <= 4; i++) { if (SECT[i] > 255 || SECT[i] < 0 || SECT[i] == "") { print "1"; break; } } }') == "1" ]]; then
+  if [[ $(echo $@ | grep '[^0-9|\..]') != "" || $(echo $@ | awk '{ split($0, SECT, "."); for (i = 1; i <= 4; i++) { if (SECT[i] > 255 || SECT[i] < 0 || SECT[i] == "") { print "1"; break; } } }') == "1" || $@ == "" ]]; then
     echo "The value of -pingdest should be a valid IP. "
     exit 1;
   fi
