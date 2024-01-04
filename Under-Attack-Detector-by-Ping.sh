@@ -15,15 +15,15 @@ telegram_push () {
 }
 
 check_number_only () {
-  if [[ $(echo $@ | grep '[^0-9.]') != "" || $@ == "" ]]; then
-    echo "Some arguments should only contain numbers. "
+  if [[ $(echo $1 | grep '[^0-9.]') != "" || $1 == "" ]]; then
+    echo "Argument $0 should only contain numbers. "
     exit 1;
   fi
 }
 
 check_ip () {
   if [[ $(echo $@ | grep '[^0-9|\..]') != "" || $(echo $@ | awk '{ split($0, SECT, "."); for (i = 1; i <= 4; i++) { if (SECT[i] > 255 || SECT[i] < 0 || SECT[i] == "") { print "1"; break; } } }') == "1" || $@ == "" ]]; then
-    echo "The value of -pingdest should be a valid IP. "
+    echo "Argument -pingdest should be a valid IP. "
     exit 1;
   fi
 }
@@ -95,32 +95,32 @@ do
 
     "-pingcnt")
       ANSPINGCNT=$(read_input $((INNUM+1)) $@)
-      check_number_only $ANSPINGCNT
+      check_number_only "-pingcnt" $ANSPINGCNT
       ;;
 
     "-pingmax")
       ANSPINGMAXTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only $ANSPINGMAXTHSD
+      check_number_only "-pingmax" $ANSPINGMAXTHSD
       ;;
 
     "-pingloss")
       ANSPINGLOSSTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only $ANSPINGLOSSTHSD
+      check_number_only "-pingloss" $ANSPINGLOSSTHSD
       ;;
 
     "-pingjit")
       ANSPINGJITTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only $ANSPINGJITTHSD
+      check_number_only "-pingjit" $ANSPINGJITTHSD
       ;;
 
     "-pingavg")
       ANSPINGAVGTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only $ANSPINGAVGTHSD
+      check_number_only "-pingavg" $ANSPINGAVGTHSD
       ;;
 
     "-pingmin")
       ANSPINGMINTHSD=$(read_input $((INNUM+1)) $@)
-      check_number_only $ANSPINGMINTHSD
+      check_number_only "-pingmin" $ANSPINGMINTHSD
       ;;
 
     "-tgbot")
