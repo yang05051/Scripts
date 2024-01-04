@@ -15,8 +15,8 @@ telegram_push () {
 }
 
 check_number_only () {
-  if [[ $(echo $1 | grep '[^0-9.]') != "" || $1 == "" ]]; then
-    echo "Argument $0 should only contain numbers. "
+  if [[ $(echo $2 | grep '[^0-9.]') != "" || $2 == "" ]]; then
+    echo "Argument $1 should only contain numbers. "
     exit 1;
   fi
 }
