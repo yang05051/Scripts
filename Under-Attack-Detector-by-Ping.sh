@@ -14,6 +14,20 @@ telegram_push () {
   curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text="$PUSHTEXT" $TEXTPAM $TGNOTIFICATION
 }
 
+check_number_only () {
+  if [[ $(echo $@ | grep '[^0-9.]') != "" ]]; then
+    echo "Some arguments should only contain numbers. "
+    exit 1;
+  fi
+}
+
+check_ip () {
+  if [[ $(echo $@ | grep '[^0-9|\..]') != "" || $(echo $@ | awk '{ split($0, SECT, "."); for (i = 1; i <= 4; i++) { if (SECT[i] > 255 || SECT[i] < 0) { print "1"; break; } } }') == "1" ]]; then
+    echo "The value of -pingdest should be a valid IP. "
+    exit 1;
+  }
+}
+
 replace_var () {
   if [[ $@ == "2" ]]; then
     TEMPTEXT=$ANSATTACKMSG
@@ -76,30 +90,37 @@ do
 
     "-pingdest")
       ANSPINGDEST=$(read_input $((INNUM+1)) $@)
+      check_ip ANSPINGDEST
       ;;
 
     "-pingcnt")
       ANSPINGCNT=$(read_input $((INNUM+1)) $@)
+      check_number_only ANSPINGCNT
       ;;
 
     "-pingmax")
       ANSPINGMAXTHSD=$(read_input $((INNUM+1)) $@)
+      check_number_only ANSPINGMAXTHSD
       ;;
 
     "-pingloss")
       ANSPINGLOSSTHSD=$(read_input $((INNUM+1)) $@)
+      check_number_only ANSPINGLOSSTHSD
       ;;
 
     "-pingjit")
       ANSPINGJITTHSD=$(read_input $((INNUM+1)) $@)
+      check_number_only ANSPINGJITTHSD
       ;;
 
     "-pingavg")
       ANSPINGAVGTHSD=$(read_input $((INNUM+1)) $@)
+      check_number_only ANSPINGAVGTHSD
       ;;
 
     "-pingmin")
       ANSPINGMINTHSD=$(read_input $((INNUM+1)) $@)
+      check_number_only ANSPINGMINTHSD
       ;;
 
     "-tgbot")
