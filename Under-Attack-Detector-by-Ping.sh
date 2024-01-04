@@ -11,7 +11,7 @@ telegram_push () {
     PUSHTEXT=$ANSNORMALMSG; TEXTPAM=$ANSNORMALMSGPAM
   fi
   
-  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text="$PUSHTEXT" $TEXTPAM
+  curl -s -o /dev/null -X POST https://api.telegram.org/bot$ANSTGBOT/sendMessage -d chat_id=$ANSTGCHAT -d text="$PUSHTEXT" $TEXTPAM $TGNOTIFICATION
 }
 
 replace_var () {
@@ -62,6 +62,7 @@ ANSNORMALMSG="The attck to your server stops."
 ANSATTACKMSGPAM=""
 ANSNORMALMSGPAM=""
 ANSID=""
+TGNOTIFICATION=""
 
 while [[ $(read_input $INNUM $@) != "" ]]
 do
@@ -111,6 +112,11 @@ do
 
     "-id")
       ANSID=".$(read_input $((INNUM+1)) $@)"
+      ;;
+
+    "-tg-no-notification")
+      TGNOTIFICATION='-d disable_notification=true'
+      INNUM=$((INNUM-1))
       ;;
 
     "-attackmsg" | "-normalmsg" | "-attackmsg-md" | "-normalmsg-md" | "-attackmsg-html" | "-normalmsg-html")
