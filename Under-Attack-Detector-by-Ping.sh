@@ -25,7 +25,7 @@ check_ip () {
   if [[ $(echo $@ | grep '[^0-9|\..]') != "" || $(echo $@ | awk '{ split($0, SECT, "."); for (i = 1; i <= 4; i++) { if (SECT[i] > 255 || SECT[i] < 0) { print "1"; break; } } }') == "1" ]]; then
     echo "The value of -pingdest should be a valid IP. "
     exit 1;
-  }
+  fi
 }
 
 replace_var () {
