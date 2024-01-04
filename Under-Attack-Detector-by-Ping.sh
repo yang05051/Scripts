@@ -67,7 +67,7 @@ TGNOTIFICATION=""
 while [[ $(read_input $INNUM $@) != "" ]]
 do
 
-  if [[ $(echo $(read_input $INNUM $@) | cut -b 1) != "-" || $(read_input $((INNUM+1)) $@) == "" ]]; then
+  if [[ $(echo $(read_input $INNUM $@) | cut -b 1) != "-" ]]; then
     echo "Incomplete argument. "
     exit 1;
   fi
