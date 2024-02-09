@@ -15,7 +15,7 @@ case $ANSTOKENTYPE in
     'M')
         read -p 'Enter account ID: ' ANSACCOUNTID
         if [[ $ANSACCOUNTID == "" ]]; then
-            echo "Zone ID should not be empty. "
+            echo "Account ID should not be empty. "
             exit 1;
         fi
         export CF_Account_ID="$ANSACCOUNTID"
