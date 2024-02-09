@@ -49,7 +49,7 @@ curl https://get.acme.sh | sh -s email="$ANSEMAIL"
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
-export VULTR_API_KEY="$ANSAPIKEY"
+export CF_Token="$ANSAPITOKEN"
 
 if [[ $ANSRENEWHOOK != "" ]]; then
     /root/.acme.sh/acme.sh --issue --dns dns_cf -d $ANSDOMAIN -d *.$ANSDOMAIN -k ec-256 --key-file /root/xray.key --fullchain-file /root/xray.pem --renew-hook "$ANSRENEWHOOK"
