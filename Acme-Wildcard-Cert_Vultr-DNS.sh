@@ -1,4 +1,4 @@
-read -p "Enter your email: " ANSEMAIL
+read -p "Enter your email for registering ACME account: " ANSEMAIL
 read -p "Enter your domain: " ANSDOMAIN
 read -p "Enter your Vultr API key: " ANSAPIKEY
 read -p "Enter renew hook: (Leave blank to skip) " ANSRENEWHOOK
@@ -17,7 +17,7 @@ else
     exit 1;
 fi
 
-curl https://get.acme.sh | sh -s email=$ANSEMAIL
+curl https://get.acme.sh | sh -s email="$ANSEMAIL"
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
