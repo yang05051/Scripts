@@ -34,7 +34,7 @@ read -p "Enter key file path (Default is /root/xray.key, leave blank to use defa
 read -p "Enter full chain file path (Default is /root/xray.pem, leave blank to use default): " ANSFULLCHAINPATH
 
 if [[ $ANSDOMAIN == "" || $ANSAPITOKEN == "" || $ANSEMAIL == "" ]]; then
-    echo "Email, Doamin, or Vultr API key cannot be empty. "
+    echo "Email, Doamin, or API key cannot be empty. "
     exit 1;
 fi
 
