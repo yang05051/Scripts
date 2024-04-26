@@ -27,8 +27,8 @@ case $ANSTOKENTYPE in
 esac
 
 read -p "Enter API token: " ANSAPITOKEN
-read -p "Enter your email for registering ACME account: " ANSEMAIL
 read -p "Enter your domain: " ANSDOMAIN
+read -p "Enter your email for registering ACME account: " ANSEMAIL
 read -p "Enter renew hook (Leave blank to skip): " ANSRENEWHOOK
 read -p "Enter key file path (Default is /root/xray.key, leave blank to use default): " ANSKEYPATH
 read -p "Enter full chain file path (Default is /root/xray.pem, leave blank to use default): " ANSFULLCHAINPATH
