@@ -1,10 +1,10 @@
-read -p "Enter your email for registering ACME account: " ANSEMAIL
 read -p "Enter your domain: " ANSDOMAIN
 read -p "Enter your Vultr API key: " ANSAPIKEY
+read -p "Enter your email for registering ACME account: " ANSEMAIL
 read -p "Enter renew hook: (Leave blank to skip) " ANSRENEWHOOK
 
 if [[ $ANSDOMAIN == "" || $ANSAPIKEY == "" || $ANSEMAIL == '' ]]; then
-    echo "Email, Doamin, or Vultr API key cannot be empty. "
+    echo "Doamin, Vultr API key, or Email for ACME registration cannot be empty. "
     exit 1;
 fi
 
