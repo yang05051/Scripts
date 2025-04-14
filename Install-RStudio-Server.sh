@@ -15,5 +15,5 @@ FILENAME=rstudio-server-${VER}-amd64.deb
 
 wget ${FILEURL}
 apt install gdebi-core
-gdebi ${FILENAME}
+gdebi ${FILENAME} -y
 rm ${FILENAME}
