@@ -10,9 +10,10 @@ fi
 VER=$(curl -s "https://api.github.com/repos/rstudio/rstudio/tags" | jq -r '.[0].name')
 VER=${VER//+/-}
 VER=${VER//v/}
-FILENAME=https://download2.rstudio.org/server/jammy/amd64/rstudio-server-${VER}-amd64.deb
+FILEURL=https://download2.rstudio.org/server/jammy/amd64/rstudio-server-${VER}-amd64.deb
+FILENAME=rstudio-server-${VER}-amd64.deb
 
-wget ${FILENAME}
+wget ${FILEURL}
 apt install gdebi-core
 gdebi ${FILENAME}
 rm ${FILENAME}
