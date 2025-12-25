@@ -25,7 +25,7 @@ fi
 if [[ $(which yum) != '' ]]; then
     yum install socat -y
 elif [[ $(which apt) != '' ]]; then
-    apt install socat -y
+    apt install socat cron dnsutils -y
 else
     echo "Unsupported system."
     exit 1;
