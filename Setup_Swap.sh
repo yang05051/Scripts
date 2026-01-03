@@ -66,12 +66,20 @@ swapon "$SWAP_FILE"
 if ! grep -q "$SWAP_FILE" /etc/fstab; then
     echo "Adding entry to /etc/fstab..."
     echo "$SWAP_FILE none swap sw 0 0" >> /etc/fstab
-    echo "/etc/fstab updated."
 else
     echo "Entry already exists in /etc/fstab. No changes needed there."
 fi
 
-# 7. Final Verification
+# 7. Update /etc/sysctl.conf to optimize swappiness
+echo "Changing memory swappiness to 10..."
+if ! grep -q 'vm.swappiness' /etc/sysctl.conf; then
+   echo 'vm.swappiness=10' >> /etc/sysctl.conf
+else
+   sed -i 's/^.*vm.swappiness.*$/vm.swappiness=10/g' /etc/sysctl.conf
+fi
+sysctl -p
+
+# 8. Final Verification
 echo "--------------------------------------------"
 echo "Success! Current Swap Status:"
 echo "--------------------------------------------"
