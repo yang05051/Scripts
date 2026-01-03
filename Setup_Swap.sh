@@ -77,7 +77,6 @@ if ! grep -q 'vm.swappiness' /etc/sysctl.conf; then
 else
    sed -i 's/^.*vm.swappiness.*$/vm.swappiness=10/g' /etc/sysctl.conf
 fi
-sysctl -p
 
 # 8. Final Verification
 echo "--------------------------------------------"
@@ -86,3 +85,4 @@ echo "--------------------------------------------"
 swapon --show
 echo ""
 free -h
+sysctl -p | grep 'vm.swappiness'
