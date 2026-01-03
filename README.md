@@ -56,6 +56,10 @@ echo "net.core.rmem_max=4194304" >> /etc/sysctl.conf; sysctl -p
 ```
 
 ## System Configuration
+#### Setup Memory Swap
+```
+bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Setup_Swap.sh)
+```
 #### Permit Remote Root Login
 ```
 bash <(curl -H 'Cache-Control: no-cache' -sL https://raw.githubusercontent.com/yang05051/Scripts/main/Permit-Root-Login.sh)
