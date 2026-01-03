@@ -85,4 +85,6 @@ echo "--------------------------------------------"
 swapon --show
 echo ""
 free -h
+echo ""
 sysctl -p | grep 'vm.swappiness'
+echo ""
