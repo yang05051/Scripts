@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # 1. Check if running as root
 if [[ $EUID -ne 0 ]]; then
    echo "Error: This script must be run as root."
