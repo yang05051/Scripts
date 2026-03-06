@@ -38,7 +38,7 @@ curl https://get.acme.sh | sh -s email="$ANSEMAIL"
 export VULTR_API_KEY="$ANSAPIKEY"
 
 if [[ $ANSRENEWHOOK != "" ]]; then
-    /root/.acme.sh/acme.sh --issue --dns dns_vultr -d $ANSDOMAIN -d *.$ANSDOMAIN -k ec-256 --key-file $KEYPATH --fullchain-file $FULLCHAINPATH --renew-hook "$ANSRENEWHOOK"
+    /root/.acme.sh/acme.sh --issue --dns dns_vultr -d $ANSDOMAIN -d *.$ANSDOMAIN -k ec-384 --key-file $KEYPATH --fullchain-file $FULLCHAINPATH --renew-hook "$ANSRENEWHOOK"
 else
-    /root/.acme.sh/acme.sh --issue --dns dns_vultr -d $ANSDOMAIN -d *.$ANSDOMAIN -k ec-256 --key-file $KEYPATH --fullchain-file $FULLCHAINPATH
+    /root/.acme.sh/acme.sh --issue --dns dns_vultr -d $ANSDOMAIN -d *.$ANSDOMAIN -k ec-384 --key-file $KEYPATH --fullchain-file $FULLCHAINPATH
 fi
